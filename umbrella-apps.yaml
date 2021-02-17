@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: apps
-  namespace: kube-system
+  namespace: argocd
   # Finalizer that ensures that project is not deleted until it is not referenced by any application
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -21,12 +21,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: umbrella-apps
-  namespace: kube-system
+  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: kube-system
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: default
   source:

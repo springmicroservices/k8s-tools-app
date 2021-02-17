@@ -2,7 +2,7 @@ apiVersion: cert-manager.io/v1beta1
 kind: ClusterIssuer
 metadata:
   name: demo-issuer
-  namespace: kube-system
+  namespace: argocd
 spec:
   acme:
     email: {{ .Values.issuerEmail }}

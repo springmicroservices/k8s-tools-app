@@ -49,7 +49,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: cert-manager
-  namespace: kube-system
+  namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-4"
 ```
@@ -61,7 +61,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: rancher
-  namespace: kube-system
+  namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "-3"
 ```
@@ -95,15 +95,15 @@ And Ta-Da, your entire cluster should be provisioning.  It will take a minute or
 **NOTE:** If you don't have a domain that you own and still want to see ArgoCD, you can run the following:
 
 ```$xslt
-kubectl port-forward svc/argocd-server 8080:80 -n kube-system
+kubectl port-forward svc/argocd-server 8080:80 -n argocd
 ```
 
 Now you should be able to go to http://localhost:8080 in your browser and get to Argo.
 
-**OTHER NOTE:** ArgoCD's username is `admin` and password is the name of the argocd-server pod running within kube-system. To get this, run the following:
+**OTHER NOTE:** ArgoCD's username is `admin` and password is the name of the argocd-server pod running within argocd. To get this, run the following:
 
 ```$xslt
-kubectl get pods -n kube-system | grep argocd-server | awk '{ print $1 }'
+kubectl get pods -n argocd | grep argocd-server | awk '{ print $1 }'
 ```
 
 ### Creating Vault Secrets
